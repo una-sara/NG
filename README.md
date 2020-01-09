@@ -9,7 +9,7 @@
 ### git rm -r --cached target //删除target文件夹
 ### git commit -m '删除了target文件夹' //提交,添加操作说明
 ### git push -u origin master //将本次更改更新到github项目上去
-如何在github上删除某个文件
+### 如何在github上删除某个文件
 ### 输入git pull origin master把github上的文件重新
 ### 输入命令dir查看目录下的文件
 ### 再输入命令git rm -r --cached image删除磁盘上的image文件
