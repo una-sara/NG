@@ -1,0 +1,34 @@
+<p>
+  demo04-dir works!
+</p>
+<!-- 循环指令的用法
+ v-for="(tmp,index) in myList"
+-->
+<ul>
+  <li *ngFor="let tmp of myList;let myIndex=index">
+    {{"myIndex is "+myIndex+" tmp is "+tmp}}
+  </li>
+</ul>
+
+<h2 *ngIf="isMember">这里是会员专区</h2>
+
+<!-- switch(n)
+{
+case 1:
+  执行代码块 1
+  break;
+case 2:
+  执行代码块 2
+  break;
+default:
+  n 与 case 1 和 case 2 不同时执行的代码
+} -->
+<div [ngSwitch]="answer">
+  <p *ngSwitchCase="'a'">正确答案是A</p>
+  <p *ngSwitchCase="'b'">正确答案是B</p>
+  <p *ngSwitchCase="'c'">正确答案是C</p>
+  <p *ngSwitchCase="'d'">正确答案是D</p>      
+  <p *ngSwitchDefault>请输入正确的答案</p>
+</div>
+
+

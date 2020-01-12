@@ -1,0 +1,21 @@
+<p>
+  demo10-pipe works!
+</p>
+<!-- ng内置的常用管道 -->
+<!-- currency/number/slice/percent/json -->
+<!-- slice:start:end 截取从start这个位置开始，截取到end这个位置终止 -->
+<p>{{"HelloWorld" | slice:2:4 }}</p>
+<!--  percent-->
+<p>{{0.35 | percent}}</p>
+<!-- 调试用的比较多
+json序列化:将一个对象或者数组，转换为json格式的字符串的过程
+-->
+<p>{{stuInfo | json}}</p>
+
+<p>{{"JohnReese" | uppercase}}</p>
+<p>{{"JohnReese" | lowercase}}</p>
+
+<p>{{ 0 | sex}}</p>
+<p>{{ 1 | sex}}</p>
+
+<p>{{[1,2,3,4,5,6] | even:0}}</p>
