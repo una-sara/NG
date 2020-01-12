@@ -1,0 +1,7 @@
+<ul>
+  <ng-container *ngFor="let tmp of stuList">
+    <li *ngIf="tmp.stuScore >= 60">
+      {{tmp.stuName}}
+    </li>
+  </ng-container>
+</ul>

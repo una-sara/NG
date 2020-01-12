@@ -1,0 +1,10 @@
+<p routerLink="/detail">
+  demo19-list works!
+</p>
+<ul>
+  <li *ngFor="let tmp of myList">
+    <p>{{tmp}}</p>
+    <!-- 点击按钮：导航到路由地址为detail的页面 -->
+    <button (click)="jump()">clickMe</button>
+  </li>
+</ul>

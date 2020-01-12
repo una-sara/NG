@@ -1,0 +1,706 @@
+张众磊 微信:teduzzl 邮箱:bjzhangzl@tedu.cn
+
+推荐项目:
+ 1、vue中很棒的组件库
+ https://github.com/vuejs/awesome-vue
+ 和过滤器相关的：
+ https://github.com/freearhey/vue2-filters
+ 路由守卫:
+ https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E8%B7%AF%E7%94%B1%E7%8B%AC%E4%BA%AB%E7%9A%84%E5%AE%88%E5%8D%AB
+
+ 2、angular
+ angular.cn
+ https://github.com/PatrickJS/awesome-angular
+ 
+ ng-cli所支持的创建时的选项:
+  https://angular.io/cli/generate#service
+ 
+ 3、rxjs 微软所提出处理异步请求的js的实现
+  https://cn.rx.js.org/
+  
+ 4、方便调试
+  http://www.bejson.com/ json校验
+
+  fake api（方便测试的假数据）:
+  http://jsonplaceholder.typicode.com/users
+  http://jsonplaceholder.typicode.com/albums
+
+建议:
+ 1、数据的操作
+  定义\读\写
+ 2、处理问题策略
+  从数据着手--》显示--》交互
+ 3、网络通信
+  ①请求的地址
+  ②请求的方式
+  ③请求中是否需要参数，几个参数、什么类型
+  ④跨域处理
+  ⑤withCredentials
+  ⑥服务器端所返回的数据格式
+
+学习计划:
+ 1、Angular以及生态圈
+   完成中大型SPA的开发
+   完成webApp的开发
+ 2、React以及生态圈
+   完成React基于web的页面开发
+   完成原生app开发
+ 3、Python以及生态圈
+   完成python基础语法的学习
+   完成django全栈类框架的学习
+
+
+
+一、Vue以及生态圈
+ 1、Vue的技术栈(生态圈):
+  vue核心库、vueRouter、vuex
+  Element/Mint、weex、vux、axios
+
+ 2、vue基础语法
+   :src
+   @click
+   v-model
+   v-for="tmp in list"
+   v-if/else-if/else
+
+   常见属性:
+     computed
+     methods
+     data
+     watch
+     props
+     components
+     filters
+     ....
+
+ 3、vue组件
+  组件?? 可被反复使用的，带有特定功能的视图
+
+  支持.vue结尾的文件，称为单文件组件系统single file component
+  Vue.component('my-component',{})
+  Vue.component('',{
+   components:{}
+  })
+
+  <my-component></my-component>
+
+ 4、vue组件间通信
+  父--》子 props down
+   <son myName='Michael'></son>
+   
+   Vue.component('son',{
+     props:['myName']//this.myName
+   })
+   
+  子--》父 events up
+   rcvMsg(msg){}
+   <son @myEvent="rcvMsg"></son>
+
+   this.$emit('myEvent',123)
+
+  兄弟 event bus
+   var bus = new Vue()
+   //接收方
+   bus.$on('myEvent',(msg)=>{})
+   //发送方
+   bus.$emit('myEvent',123)
+  
+  ref(父组件主动的到子组件取值)
+  <son ref='mySon'></son>
+  this.$refs.mySon
+
+  $parent
+  this.$parent 找到父组件的实例对象
+
+ 5、服务器端的通信
+   npm i axios
+   import Axios from 'axios'
+   Axios.get/post().then((response)=>{
+     //response.data
+   })
+
+ 6、路由功能
+  路由模块:建立起一种映射关系
+
+  6.1 基础用法
+   指定容器 router-view
+   创建组件
+   路由词典：在vue中，是一个由多个路由对象构成的数组
+    {path:'',component:'',children:[],****}
+
+   调用路由
+    new Vue({
+      router:new VueRouter({
+        routes:***
+      })
+    })
+  6.2 跳转传参
+   this.$router.push()
+   this.$router.pop()
+   this.$router.go(-1)
+   <router-link to="/login"></router-link>
+
+   路由传参:在借助于路由模块进行页面切换时，同时指定数据
+   /detail-->/detail/:id
+
+   this.$router.push('/detail/3')
+
+   this.$route.params.id
+  6.3 路由嵌套
+   一个SPA中，有一个页面，这个页面需要继续通过二级路由来访问其他的嵌套子页面
+   
+
+    {
+      path:'',
+      component:**,
+      children:[
+        {},
+	{}
+      ]
+    }
+     比如A组件需要嵌套B\C
+     步骤1：A指定一个容器 router-view
+     步骤2: 配置A的路由对象 
+      {
+        path:'/a',
+	component:A,
+	children:[
+	  {}
+	]
+      }
+
+      
+  6.4 路由守卫
+  6.5 动态添加路由
+  6.6 懒加载
+
+ 7、vuex
+  state 数据的定义
+  getters 在state数据基础之上派生新数据
+  mutations 修改数据
+  actions 执行异步操作，但是涉及到数据的修改依然得通过mutation
+  modules 将数据和操作拆分
+
+二、设计原则
+ 1、YAGNI
+  You aren't gonna need it
+  不要写不需要的代码
+
+ 2、KISS
+  Keep it simple and stupid
+  保证代码足够的简单
+  变量、文件、方法、注释
+ 
+ 3、OCP
+  open close principle 开闭原则
+  对于扩展是开放的
+  对于修改是关闭的
+
+ 4、SRP 
+  single responsiblity principle
+  单一责任原则
+  每一个文件、每一个方法、每一个组件只做一件事
+ 
+ 5、高内聚、低耦合
+  耦合度所指的是不同部分之间的关系
+
+三、Angular以及生态圈
+ 0、生态圈
+  angular核心库core、HttpModule、FormsModule RouterModule
+  ionic(移动端)
+  AngularMaterial（桌面端）
+  NgZorro(桌面端)
+
+ 1、Angular概述
+  what?
+    angular是由Google所推出的js框架，是以模块为基本单位，模块本身也是一个容器，可以包含组件、指令、管道、服务
+  when?
+    angular针对中大型SPA
+  
+  why?
+   内置了丰富的类，功能很强大
+   采用了强类型约束的语言ts(TypeScript)
+   支持模块化的开发，在模块中又可以继续封装组件
+   更好的可读性和可维护性
+   强大的cli支持
+
+  how?
+    angular是如何来工作的？？
+     是靠组件的封装来完成视图的编写
+     是靠服务的封装来完成共享数据或者方法的处理
+     是靠指令、管道来增强html的功能
+     是靠模块的封装来完成业务大功能的拆分和处理
+     。。。。
+
+    搭建angular开发环境:
+    npm install -g @angular/cli
+    ng new my-app
+    cd my-app
+    ng serve --open/npm start
+    
+    具体步骤:
+    ①forStu.zip拷贝到C:\xampp\htdocs\codes
+    解压缩到forStu
+    ②拷贝forStu文件夹中Angular.rar
+    到C:\xampp\htdocs\codes\ng文件中
+    ③将Angular.rar直接解压缩到当前目录
+
+    npm start
+
+  启动流程?
+   main.ts-->启动根模块(src/app/app.module.ts)-->根组件(src/app/app.component.ts)
+  
+  设置环境变量:
+   ①找到ng的路径
+   C:\xampp\htdocs\codes\ng\myngapp\node_modules\.bin
+   ②添加到环境变量
+    我的电脑--》右键查看属性--》高级系统设置--》环境变量--》系统变量 Path--》win10新建/win7在输入框分号隔开粘贴对应的路径信息
+   ③重新打开了cmd窗口，输入ng查看是否可以使用
+   ④win10 建议大家将vscode中默认终端指定为cmd
+   文件-》首选项-》设置--用户设置---》
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe"
+
+    C:\WINDOWS\System32\cmd.exe
+
+     
+ 2、ng核心概念
+  模块、组件、模板、指令、数据绑定
+  服务、依赖注入、路由
+
+ 3、组件的封装和调用
+  组件：可被反复使用的，带有特定功能的视图
+
+  Vue组件的创建和调用：
+   Vue.component("",{components:{}})
+
+   <test></test>
+  
+  angular组件类的创建和调用:
+   ng g component demo01
+    （背后做的事项：在src的app中创建一个demo01的文件夹，在此文件夹中创建4个文件，同时将Demo01Component注册到根模块）
+
+   调用：
+    ①直接设置为根组件
+    ②将demo01作为子组件进行调用
+     组件的selector属性对应的值是可以直接作为标签来使用
+    ③路由来访问
+  
+  装饰器:TypeDecorator
+   指定angular如何来描述当前这个类
+   @Component @NgModule @Injectable @Directive @Pipe
+   ...
+  元数据:metaData
+   告诉angular如何来处理当前这个类
+
+ 4、ng基础语法（重点）
+  4.1 双花括号    
+    <any>{{expression}}</any>
+  4.2 常用指令:
+   4.2.1 循环 *ngFor
+    <any *ngFor="let tmp of myList"></any>
+
+    <any *ngFor="let tmp of myList;let myIndex=index"></any>
+   4.2.2 条件 *ngIf *ngSwitchCase/Default
+    <any *ngIf="expression"></any>
+    
+    多重条件判断:
+    <div [ngSwitch]="answer">
+     <p *ngSwitchCase="'a'">A</p>
+     <p *ngSwitchCase="'b'">B</p>
+     <p *ngSwitchCase="'c'">C</p>
+     <p *ngSwitchCase="'d'">D</p> 
+     <p *ngSwitchDefault>请输入正确的答案</p>
+    </div>
+   4.2.3 事件绑定 （）
+    <any (click)="rcvMsg"></any>
+   4.2.4 属性绑定 []
+    <any [someProp]="expression"></any>
+    将expression表达式执行的结果绑定指定的someProp属性
+   4.2.5 双向数据绑定
+     方向1：数据--》视图
+     方向2：视图--》数据 （表单元素这些视图中进行操作之后，操作的结果绑定到数据）
+     
+     ①准备工作
+      找到当前组件所属的模块，
+      import {FormsModule} from '@angular/forms'
+
+      @NgModule({
+        imports:[FormsModule]
+      })
+     ②调用双向数据绑定
+      <表单元素 [(ngModel)]="myValue" />
+
+   注意事项:
+   ①结构型指令不可以同时在一个元素上进行调用，通过ng-container来解决此问题
+   ②ngModel指令和ngModelChange事件绑定时有先后顺序之分，先做双向数据绑定，其次再是事件绑定
+
+
+  练习:
+   ①创建一个组件demo03-lianxi
+   ②在根组件app.component.html中调用demo03-lianxi
+   ③在demo03-lianxi的组件类中定义一个整数数组，将数组中内容显示在ul的li
+ 
+   练习:(:- 16:40)
+    ①完成demo06-lianxi组件的创建和调用
+    ②在demo06-lianxi组件中 初始化一个对象数组(5个对象)，每一个对象都包含以下属性:stuName stuScore stuSex
+    ③将对象数组显示在模板中
+    模板无序列表，列表项显示学生的姓名，只显示成绩在60分以上的
+  
+ 5、管道(过滤器)
+  angulr中是支持内置的过滤器，也支持自定义过滤器
+
+  管道的目的：实现数据在展示时，一些对应的筛选、过滤、格式化
+  
+  管道(过滤器)的本质：一个有参数有返回值的方法
+
+  Vue中管道的用法:
+   <any>{{expression | myFilter1(1,2)}}</any>
+  
+  Angular:
+   语法：
+   ①<any>{{expression | myFilter1:1:2}}</any>
+   ②多重过滤
+   <any>{{expression | myFilter1 | myFilter2 | myFilter3}}</any>
+
+   内置的管道:
+    currency
+    number
+    percent
+    slice:start:end
+    uppercase
+    lowercase
+    json
+   
+   自己的管道:
+    ①自定义管道:
+     ng g pipe sex
+    ②实现管道的具体要求:(重点)
+     实现transform方法，在此方法，针对value所对应的数据，根据管道的功能要求做处理，最后返回处理后的数据
+    ③调用管道
+     管道的名字取决于管道类在定义是元数据中的name对应的值
+    
+   练习:
+    ①实现一个自定义的管道 even
+     目的：实现一个筛选
+     传递一个数组，返回偶数构成的数组
+    ②在demo10-pipe调用自定义管道   
+ 
+ 练习:
+  组件的用法
+  ①完成demo09-lianxi的组件的创建和调用
+  ②模板内容:
+   一个输入框 一个按钮(添加)，一个ul
+  ③点击按钮，将输入框的值显示ul的li
+ 
+ 6、组件间通信（重点）
+   6.1 父--》子 props down （Input）
+     vue:
+       <son myName='zhangsan'></son>
+       props:['myName']//this.myName
+     Angular:
+       ①传值
+        <app-demo11-header myTitle="购物车">
+	</app-demo11-header>
+       ②接收值
+        import {Input} from '@angular/core'
+
+	@Input() myTitle = ""
+
+	this.myTitle/直接在模板中myTitle
+
+   6.2 子--》父 events up （$event/Output/EventEmitter）
+     vue:
+      步骤1：事件的绑定
+      rcvMsg(msg){}
+      <son @myEvent="rcvMsg"></son>
+      步骤2：触发事件进行传值
+      this.$emit('myEvent',0)
+     Angular:
+      步骤1：事件的绑定
+       rcvMsg(msg){}
+       <son (myEvent)="rcvMsg($event)"></son>
+      步骤2：事件的触发
+       import {Output,EventEmitter} from '@angular/core'
+       
+       @Output() myEvent = new EventEmitter()
+
+       this.myEvent.emit(0)
+
+   6.3 兄弟通信
+
+    ???
+ 
+ 7、服务
+  服务是可以将不同的组件之间要共享的数据或者方法封装在一个类中，以方便提高代码的可读性、可维护性、复用性
+
+  举例：实现一个服务，来封装检查用户权限的方法、封装日志功能、。。。。
+
+  7.1 服务的创建
+   ng g service log
+
+  7.2 服务的调用
+   import {LogService} from '../log.service'
+
+   实例化:将一个类变成一个对象的过程
+   constructor(private myService:LogService){}
+
+   this.myService.***
+
+   练习:(:- 15:30)
+    ①实现一个心跳服务 beat
+     在服务中 封装两个方法，一个startBeat(启动一个定时器，每隔1s输出‘正在心跳’)，另外一个stopBeat(结束定时器的运行)
+    ②完成组件demo14-order的创建和调用
+     模板：俩按钮，点击按钮，分别调用服务中startBeat/stopBeat
+    
+    涉及的知识点:
+    ①服务从创建到封装到调用一个完整流程
+    ②定时器需要反复开闭，要记得指定一个开关
+
+  
+ 8、与远程服务器端的通信(HttpClient/HttpClientModule/subscribe)
+  Vue:
+   npm i axios
+   import Axios from 'axios'
+   Axios.get/post().then()
+  
+  Angular:
+   自带网络请求处理：使用HttpClient这个类来完成服务器端的通信工作，但是当前组件所属模块依赖于HttpClientModule
+
+
+  异步处理:
+   ajax
+   promise
+   async/await
+   callback
+   rxjs：微软所提出的一个基于Observable的(观察者-订阅者设计模式)的js异步处理的库
+
+
+  具体步骤：
+   ①让根模块依赖于HttpClientModule
+    app.module.ts
+    import {HttpClientModule} from '@angular/common/http'
+
+    @NgModule({
+      imports:[HttpClientModule]
+    })
+   
+   ②调用
+    import {HttpClient} from '@angular/common/http'
+
+    constructor(private myHttp:HttpClient){}
+
+
+    this.myHttp.get(url).subscribe((result)=>{
+      //result就是服务器端所返回的数据
+    })
+
+  
+  xz_api.zip放到C:/xampp/htdocs/codes
+  将压缩包解压缩到xz_api文件夹中
+  准备工作:
+   ①启动xampp的mysql数据库服务器
+   ②启动node编写app.js对应的http服务器
+   (C:\xampp\htdocs\codes\xz_api\app.js)
+    node app.js
+    
+    http://localhost:8080/product/list
+  
+  练习:
+   ①完成demo16-lianxi组件的创建和调用
+   ②组件模板:
+     ul、button
+   ③业务
+     点击button，向指定的url发送请求http://localhost:8080/product/list，将请求到的数据保存，到ul中显示，li显示商品的标题
+
+     进阶要求：
+      在点击button，请求下一页的数据，将请求到的新数据和老的数据拼接在一起（concat）
+   
+
+ 9、路由
+  SPA的工作原理：
+   ①解析地址栏
+    http://localhost:4200/login
+   ②拿到路由地址
+    login
+   ③从路由词典中匹配，指定的路由地址要加载那个组件
+    Demo17LoginComponent
+   ④将Demo17LoginComponent组件类进行实例化，将模板内容，插入到路由出口(RouterOutlet)
+
+  what?
+    路由都是为了建立起一种映射关系
+  why?
+    为了更快的实现SPA(single page application)
+  how?
+    ①可以将路由功能单独的封装在一个模块中
+    ng g module route --routing
+    route.routing.module.ts-->
+     修改forChild-->forRoot
+    ②让根模块依赖于自定义包含路由功能的模块
+     app.module.ts
+     import {RouteRoutingModule} from '***'
+     @NgModule({
+      imports:[RouteRoutingModule]
+     })
+  9.1 基础用法(重点)
+     ①指定容器
+      <router-outlet></router-outlet>
+     
+     ②创建组件
+      ng g component demo17-login
+      ng g component demo17-register
+    
+     ③设置路由词典(路由词典的本质就是一个数组，数组是由多个路由对象构成，路由对象path/component/children/...)
+      
+      const routes:Routes = [
+        {
+	 path:'login',
+	 component:Demo17LoginComponent,
+	 children:[],
+	 canActivate:[],
+	 redirectTo:""
+	}
+      ]
+
+     ④测试路由有没有生效
+      localhost:4200/login
+
+     ⑤路由匹配规则
+      第一点:
+       路由地址为空--》 ""
+       具体的路由地址--》"login"
+       异常处理-->'**'
+       注意事项：路由地址在定义时不能以'/'开头，否则是会报错的
+      第二点：
+       先后顺序，默认从路由数组的第0个开始匹配
+      第三点：
+       路由对象支持的属性
+       (https://www.angular.cn/api/router/Routes)
+        path
+	component
+	children
+	redirectTo
+    
+     练习: 
+       ①完成两个组件的创建
+         demo18-list demo18-detail
+       ②指定默认访问demo18-list,路由地址是detail访问demo18-detail
+
+
+  9.2 跳转、传参 (重点Router/routerLink/ActivatedRoute)
+    知识回顾Vue：
+     <router-link to="/login"></router-link>
+     this.$router.push()
+    
+    angular跳转:
+     ①编程式导航:
+      import {Router} from '@angular/router'
+      constructor(private myRouter:Router){}
+      this.myRouter.navigateByUrl('/login')  
+     ②RouterLink
+      <any routerLink="/detail"></any>
+
+
+     练习: (:- 14:20)
+     ①完成两个组件类的创建以及路由的分配
+     路由地址为空--> demo19-list 
+     路由地址为detail--> demo19-detail
+     ②demo19-list
+      初始化一个整数数组，将数组中数据遍历在ul中创建多个li（p显示数组中的数据
+      button），点击li的button，跳转到detail所对应的组件
+
+    angular传参:
+      Vue的处理思路：
+       ①配置接收方的路由地址
+        /detail -->/detail/:id
+       ②发送
+        this.$router.push('/detail/2')
+       ③接收
+        this.$route.params.id
+      
+      angular：
+        ①配置接收方的路由地址
+         detail -->detail/:id
+	②发送
+	 this.myRouter.navigateByUrl('/detail/10')
+	 this.myRouter.navigateByUrl('/detail/'+this.uName)
+	 <any routerLink="/detail/10"></any>
+	 <any routerLink="/detail/{{myId}}"></any>
+	 <any [routerLink]="'/detail/'+myId"></any>
+	③接收
+	 import {ActivatedRoute} from '@angular/router'
+
+	 constructor(private myRoute:ActivatedRoute){}
+	 
+	 this.myRoute.params.subscribe((result)=>{})
+
+  
+  9.3 进阶用法--路由嵌套(routerOutlet/children)
+   比如A组件，需要通过路由嵌套B组件、C组件
+   ①给A组件模板内部指定一个容器
+    <router-outlet></router-outlet>
+   ②给A组件的路由对象指定children
+    {
+      path:'a',
+      component:A,
+      children:[
+        {path:'b',component:B}
+      ]
+    }
+   
+   创建组件:
+    demo21-mail
+    demo21-inbox
+    demo21-outbox
+
+    <a routerLink="/mail/inbox">收件箱</a>
+    <a routerLink="/mail/outbox">发件箱</a>
+
+  9.4 进行用法--路由守卫(CanActivate)
+   路由守卫本质就是执行一些运算，判断可否允许来访问组件
+
+   ①创建服务，实现CanActivate类中的canActivate方法
+    angular的路由守卫是靠实现一个服务来做的
+    ng g service my-guard
+
+    export class MyGuardService implements CanActivate{
+      canActivate(){
+        //执行一些运算
+        return boolean/Observable/Promise
+      }
+    }
+
+   ②调用具备守卫功能的服务
+    找到要保护的路由对象，指定一个canActivate
+    {
+      path:'admin',
+      component:AdminComponent,
+      canActivate:[MyGuardService]
+    }
+    
+  
+  练习:
+   ①完成两个组件类的创建和路由地址的指定
+    demo23-index  --> index
+    demo23-detail  --> detail
+   ②demo23-index
+      1、组件一旦加载之后，(HttpClient)请求http://localhost:8080/index这个地址，
+      2、将返回的数据中的recommendedItems，渲染在视图（ul、li显示商品的title）
+      3、li能够点击跳转到detail，同时将商品的pid作为参数发送过去
+   ③demo23-detail
+     接收传来的参数，显示在视图的h2:'这是id为1 的详情页'
+    
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+

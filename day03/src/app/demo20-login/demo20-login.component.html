@@ -1,0 +1,16 @@
+<p>
+  demo20-login works!
+</p>
+
+<input type="text" placeholder="请输入用户名"
+ [(ngModel)]="uName"/>
+<br/>
+
+<button routerLink="/main/{{uName}}">
+  登录1
+</button>
+<button [routerLink]="'/main/'+uName">
+  登录2
+</button>
+<!-- 编程式导航传参 -->
+<!-- <button (click)="login()">登录</button> -->

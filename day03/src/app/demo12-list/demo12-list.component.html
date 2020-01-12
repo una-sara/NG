@@ -1,0 +1,11 @@
+<p>
+  demo12-list works!
+</p>
+<ul>
+  <app-demo12-item 
+  *ngFor="let tmp of myList;let myIndex=index"
+  [myValue]="tmp"
+  [itemIndex]="myIndex"
+  (deleteEvent)="rcvMsg($event)">
+  </app-demo12-item>
+</ul>
